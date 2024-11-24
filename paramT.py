@@ -9,7 +9,7 @@ m1 = g*mb/2
 m2 = -g*mb/2
 
 # Entrando com um valor B fixo
-B=100
+B=10
 
 # Definindo a magnetização paramagnética
 def m(T,B):
@@ -17,11 +17,11 @@ def m(T,B):
         return g*mb/2
         # Valor máximo da magnetizacao. Para evitar divisão por 0.   
     else:
-        return (g*mb/2)*tanh(g*mb*B/2*k*T)
+        return (g*mb/2)*tanh((g*mb*B)/(2*k*T))
         # Valor da magnetizacao para T>0
 
 # Define o arquivo .dat de saída
-paramT = "C:\\Users\\Miguel\\Desktop\\IClocal\\paramT.dat"
+paramT = "C:\\Users\\Miguel\\Desktop\\paramT.dat"
 
 # Gera uma sequencia de 0 a 50 (51 valores) e armazena na variavel 'temperaturas'
 temperaturas = range(51) 

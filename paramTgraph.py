@@ -9,14 +9,14 @@ m1 = g*mb/2
 m2 = -g*mb/2
 
 # Entrando com um valor B fixo
-B=100
+B=10
 
 # Definindo a magnetização paramagnética
 def m(T,B):
     if T==0:
         return g*mb/2
     else:
-        return (g*mb/2)*tanh(g*mb*B/2*k*T)
+        return (g*mb/2)*tanh((g*mb*B)/(2*k*T))
 
 # Gera uma sequencia de 0 a 50 (51 valores) e armazena na variavel 'temperaturas'
 temperaturas = range(51) 
@@ -25,12 +25,13 @@ temperaturas = range(51)
 m_valores = [m(T,B) for T in temperaturas]
 
 # Criando o grafico em python
-plt.plot(temperaturas,m_valores)
+plt.plot(temperaturas, m_valores, label='magnetização', color='blue')
 
 # Títulos e rótulos
 plt.title("Magnetização paramagnética")
 plt.xlabel("Temperatura")
 plt.ylabel("Magnetização")
+plt.legend()
 plt.grid(True)
 
 # Mostrar o gráfico
