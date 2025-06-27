@@ -73,3 +73,47 @@ def plot(funcoes, lambdas):
 
 # salvar_dados(M, 0)
 # plot([M], [0])
+
+
+
+
+ def salvar_dados(funcao, B, lambdas): # Função salvar os arquivos
+    nome_funcao = funcao.__name__
+    escala = fator_escala(funcao)
+
+    resultados = []
+    for T in temperaturas:
+        valor = funcao(T, B, lambdas)
+        resultados.append(valor * escala)
+
+    # Da o nome do arquivo
+    max_index = len(lambdas)-1
+    nome_arquivo = f"ferro_{nome_funcao}_B{B}_L{max_index}.dat"
+
+    with open(nome_arquivo, "w") as f:
+        for T, valor in zip(temperaturas, resultados):
+            f.write(f"{T:.3f} {valor:.3e}\n")
+
+
+def plot(funcoes, Bs, lista_de_lambdas): # Plotar varios gráficos ao mesmo tempo
+    for funcao in funcoes:
+        for B in Bs:
+            for lambdas in lista_de_lambdas:
+                escala = fator_escala(funcao)
+                resultados = []
+                for T in temperaturas:
+                    valor = funcao(T, B, lambdas)
+                    resultados.append(valor * escala)
+
+                label_lambdas = f"L{len(lambdas)-1}"
+                plt.scatter(temperaturas, resultados,
+                            label=f"{funcao.__name__}, B={B}, {label_lambdas}")
+                
+
+
+# plot([nome],[campo],[lambda])
+# salvar_dados(nome,campo,lambda)
+
+# plot([qui], [0], [773158.5,644298.75,515439.0,386579.25,257719.5])
+# salvar_dados(M, 0, 773158.5)
+# plot([TC],[0],[773158.5,644298.75,515439.0,386579.25,257719.5])

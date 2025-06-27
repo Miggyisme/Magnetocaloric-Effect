@@ -1,4 +1,5 @@
-s=1/2
-lambda1=515439.0
+s=0.5
+B=7
+lambda0=515439.0
+lambda1=0
 lambda2=0
-B=0
