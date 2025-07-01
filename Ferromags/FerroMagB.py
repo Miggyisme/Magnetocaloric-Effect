@@ -27,19 +27,26 @@ for linha in linhas[2:]:
     lambdas.append(valor)
 
 
+print(lambdas)
+z=input
 
 # Pre-requisitos
 def B_ef(m, B, lambdas): # Função B efetivo
     Bef = B
     for i, lmbda in enumerate(lambdas):
         Bef = Bef + lmbda*m**(i+1)
+        
     return Bef
+
+
 
 def TC(T,B,lambdas): # Função TC
     m = M(T,B,lambdas)
     Bef = B_ef(m,B,lambdas)
     arg = (g*mb*Bef) / (2*k*T)
     return ((g*mb)**2 / (4*k)) * lambdas[0] * (sech(arg)**2)
+
+
 
 
 # Lista de temperaturas
@@ -125,5 +132,5 @@ def salvar_dados(funcao): # Função salvar os arquivos
         for T, valor in zip(temperaturas, resultados):
             f.write(f"{T:.3f} {valor:.3e}\n")
 
-salvar_dados(S) #Executar
+salvar_dados(M) #Executar
 
