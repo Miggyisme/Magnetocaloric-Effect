@@ -125,5 +125,5 @@ def salvar_dados(funcao): # Função salvar os arquivos
         for T, valor in zip(temperaturas, resultados):
             f.write(f"{T:.3f} {valor:.3e}\n")
 
-salvar_dados(M) #Executar
+salvar_dados(S) #Executar
 
