@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 
 diretorio = os.path.dirname(__file__)
 arquivos = [
-    "ferro_M_B0.0_L2.dat",
-#    "ferro_S_B1.0_L2.dat",
+    "ferro_M_iterativo_B0.0_L0.dat",
+    "ferro_M_iterativo_B0.0_L2.dat",
 #   "ferro_S_B3.0_L2.dat",
 #   "ferro_S_B5.0_L2.dat",
-#    "ferro_S_B9.0_L2.dat"
+#   "ferro_S_B9.0_L2.dat"
 ]
 
 
@@ -26,7 +26,7 @@ for arquivo in arquivos:
     plt.scatter(x,y, label=legenda) 
 
 
-
+'''
 # Definicao de limites do grafico
 largura_esquerda = 0
 largura_direita = 50
@@ -34,7 +34,7 @@ altura_min=0
 altura_max=1
 plt.xlim(largura_esquerda,largura_direita)
 plt.ylim(altura_min,altura_max)
-
+'''
 
 # Legendas e limites
 plt.xlabel("Eixo x")

@@ -133,4 +133,3 @@ def salvar_dados(funcao): # Função salvar os arquivos
             f.write(f"{T:.3f} {valor:.3e}\n")
 
 salvar_dados(M) #Executar
-
