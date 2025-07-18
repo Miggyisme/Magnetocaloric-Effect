@@ -1,18 +1,15 @@
 import os
-import numpy as np
+from numpy import sinh, cosh, tanh, log, arange
 import matplotlib.pyplot as plt
-from math import cosh, log
 from scipy.optimize import fsolve
 def sech(x):
-  return 1/np.cosh(x)
-
+  return 1/cosh(x)
 
 # Constantes
 g = 2             # Fator de landé
 k = 8.61e-5       # Constalte de Boltzmann (eV/K)
 mb = 5.78e-5      # mi bohr (eV/T)
 R = 8.31          # Constante universal dos gases
-
 
 # Leitura dos dados: s, B, lista de lambdas
 data = os.path.join(os.path.dirname(__file__), "input.dat")
@@ -26,79 +23,99 @@ for linha in linhas[2:]:
     valor = float(linha.strip().split("=")[1])
     lambdas.append(valor)
 
+# Lista de temperaturas
+start = 0.01
+end = 50
+step = 0.05
+temperaturas = list(map(float, arange(start, end + step, step)))
 
-print(lambdas)
-z=input
+def Bef(m): # Função B efetivo
+    Bef_ = B
+    for i, labmda in enumerate(lambdas):
+        Bef_ = Bef_ + labmda*m**(i+1)
+    return Bef_
 
-# Pre-requisitos
-def B_ef(m, B, lambdas): # Função B efetivo
-    Bef = B
-    for i, lmbda in enumerate(lambdas):
-        Bef = Bef + lmbda*m**(i+1)
-        
-    return Bef
+
+def M(T, B):
+    m = 1.0
+    tol=1e-8
+    while True:
+        Bef_ = Bef(m)
+        arg = (g * mb * Bef_) / (2 * k * T)
+        m_new = (g * mb / 2) * tanh(arg)
+        if abs(m_new - m) < tol:
+            return m_new
+        m = m_new
+
+
+M_results=[]
+for T in temperaturas:
+    # Em cada temperatra da lista
+
+    M_results.append(float(M(T,B)))
+
+   #print(M_results)
+   #input()
+
+plt.plot(temperaturas, M_results)
+plt.xlabel("Temperatura (K)")
+plt.ylabel("Magnetização M(T)")
+plt.grid(True)
+plt.show()
+
+
+
 
 
 
 def TC(T,B,lambdas): # Função TC
     m = M(T,B,lambdas)
-    Bef = B_ef(m,B,lambdas)
+    Bef = Bef(m,B,lambdas)
     arg = (g*mb*Bef) / (2*k*T)
     return ((g*mb)**2 / (4*k)) * lambdas[0] * (sech(arg)**2)
 
 
 
 
-# Lista de temperaturas
-start = 0.01
-end = 50
-step = 0.05
-temperaturas = np.arange(start, end + step, step)
+
 
 
 
 
 
 # Grandezas
-def M(T, B, lambdas): # Magnetização
-    def f(m_):
-        Bef = B_ef(m_,B,lambdas)
-        arg = (g*mb*Bef) / (2*k*T)
-        return (g*mb/2) * np.tanh(arg) - m_
-    m0 = 1
-    sol = fsolve(f, m0)
-    return sol[0]
+
 
 def S(T, B, lambdas): # Entropia
     m = M(T,B,lambdas)
-    arg = (g * mb * B_ef(m, B, lambdas)) / (2 * k * T)
-    return k * (np.log(2 * np.cosh(arg)) - arg * np.tanh(arg))
+    arg = (g * mb * Bef(m, B, lambdas)) / (2 * k * T)
+    return k * (log(2 * cosh(arg)) - arg * tanh(arg))
 
 def C(T, B, lambdas): # Calor Específico
     m = M(T,B,lambdas)
-    Bef = B_ef(m,B,lambdas)
+    Bef = Bef(m,B,lambdas)
     arg = (g*mb*Bef)/(2*k*T)
     num = ((g*mb*Bef)**2/(4*k*T)) * ((sech(arg))**2)
     return num/(T - TC(T, B, lambdas))
 
 def qui(T, B, lambdas): # Susceptibilidade magnética
     m = M(T,B,lambdas)
-    Bef = B_ef(m,B,lambdas)
+    Bef = Bef(m,B,lambdas)
     arg = (g*mb*Bef) / (2*k*T)
     num = ((g*mb)**2/(4*k)) * ((sech(arg))**2)
     return num/(T - TC(T, B, lambdas))
 
 
-'''
+
 # (DelM/DelT) # Precisa de cuidados porque a derivada não é a mesma.
 def Del(T, B):
     m = M(T,B)
-    Bef = B_ef(m,B)
+    Bef = Bef(m)
     arg = (g*mb*Bef)/(2*k*T)
     num = (((g*mb)**2)*Bef)/(4*k*(T**2)) * ((sech(arg))**2)
-    den = 1 - ((((g*mb)**2)/(4*k*T)) * lambda0 * ((sech(arg))**2))
+    den = 1 - ((((g*mb)**2)/(4*k*T)) * lambdas[0] * ((sech(arg))**2))
     return -(num/den)
-'''
+
 
 
 
@@ -131,5 +148,4 @@ def salvar_dados(funcao): # Função salvar os arquivos
     with open(nome_arquivo, "w") as f:
         for T, valor in zip(temperaturas, resultados):
             f.write(f"{T:.3f} {valor:.3e}\n")
-
 salvar_dados(M) #Executar

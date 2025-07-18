@@ -25,14 +25,21 @@ for linha in linhas[2:]:
     valor = float(linha.strip().split("=")[1])
     lambdas.append(valor)
 
-print("Lambdas:", lambdas)
-
 # Função B efetivo
-def B_ef(m, B, lambdas):
+def Bef(m,lambdas):
     Bef = B
-    for i, lmbda in enumerate(lambdas):
-        Bef += lmbda * m**(i + 1)
+    for i, lambda_ in enumerate(lambdas):
+        Bef += lambda_ * m**(i + 1)
     return Bef
+
+
+
+
+
+
+
+
+
 
 # Função que calcula M via iteração manual
 def M_iterativo(T, B, lambdas, tol=1e-8, max_iter=1000):
