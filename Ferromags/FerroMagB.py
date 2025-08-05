@@ -13,7 +13,7 @@ R = 8.31          # Constante universal dos gases
 
 # Leitura dos dados: s, B, lista de lambdas
 data = os.path.join(os.path.dirname(__file__), "input.dat")
-with open(data, "r", encoding="utf-8") as arquivo:
+with open(data, "r") as arquivo:
     linhas = arquivo.readlines()
 
 s = float(linhas[0].strip().split("=")[1])
@@ -35,9 +35,8 @@ def Bef(m,B): # Função B efetivo
         Bef_ = Bef_ + labmda*m**(i+1)
     return Bef_
 
-
 def M(T, B):
-    m = 1e-3
+    m = 1
     tol=1e-8
     while True:
         Bef_ = Bef(m,B)
@@ -46,11 +45,13 @@ def M(T, B):
         if abs(m_ - m) < tol:
             return m_
         m = m_
-        #print(Bef_)
+        print(Bef_)
         #print(m)
-        #input()
+        input()
 M_results=[]
 
+# Esse lambda nao parece estar certo
+# Bef quase não muda
 
 
 def TC(T, B):
@@ -115,15 +116,15 @@ for T in temperaturas:
     qui_results.append(float(qui(T,B)))
 
 
+# Salvar e plotar gráfico
 plt.scatter(temperaturas, M_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
 plt.show()
 
-
 def salvar(temperaturas, resultados):
-    with open("arquivo.dat", "w", encoding="utf-8") as f:
+    with open("dados.dat", "w") as f:
         for T, res in zip(temperaturas, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
 salvar(temperaturas, M_results)

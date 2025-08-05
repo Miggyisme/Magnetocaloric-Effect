@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 
 diretorio = os.path.dirname(__file__)
 arquivos = [
-    "ferro_M_iterativo_B0.0_L0.dat",
-    "ferro_M_iterativo_B0.0_L2.dat",
-#   "ferro_S_B3.0_L2.dat",
-#   "ferro_S_B5.0_L2.dat",
-#   "ferro_S_B9.0_L2.dat"
+    "dados0.dat",
+#    "dados1.dat",
+    "dados2.dat",
+#    "dados3.dat",
+#    "dados4.dat",
 ]
 
 
