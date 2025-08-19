@@ -29,8 +29,18 @@ end = 50
 step = 0.05
 temperaturas = list(map(float, arange(start, end + step, step)))
 
+# lambdai1 = 515439.0
+# lambdai3 = 51543900000000.0
+
+# adicionar lambda ao quadrado #############################
+
+
 def Bef(m,B): # Função B efetivo
     Bef_ = B
+#   Bef_ = Bef_ +lambdai3*m**(3)
+#     Bef_ = Bef_ + lambdai1*m + lambdai3*m**(3)
+
+#    Bef_ = Bef_ +lambdai*m
     for i, labmda in enumerate(lambdas):
         Bef_ = Bef_ + labmda*m**(i+1)
     return Bef_
@@ -45,9 +55,9 @@ def M(T, B):
         if abs(m_ - m) < tol:
             return m_
         m = m_
-        print(Bef_)
-        #print(m)
-        input()
+        # print(Bef_)
+        # print(m)
+        # input()
 M_results=[]
 
 # Esse lambda nao parece estar certo
@@ -95,7 +105,7 @@ def Del(T, B):
     return -(num/den)
 '''
     
-
+# Fator de escala ##############################
 def escala(f): # Fator de escala. Caso a função não esteja no dicionário, retorna 1 (sem escala)
       escalas = {
         M: 1/mb,
