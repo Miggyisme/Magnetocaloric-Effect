@@ -29,18 +29,8 @@ end = 50
 step = 0.05
 temperaturas = list(map(float, arange(start, end + step, step)))
 
-# lambdai1 = 515439.0
-# lambdai3 = 51543900000000.0
-
-# adicionar lambda ao quadrado #############################
-
-
 def Bef(m,B): # Função B efetivo
     Bef_ = B
-#   Bef_ = Bef_ +lambdai3*m**(3)
-#     Bef_ = Bef_ + lambdai1*m + lambdai3*m**(3)
-
-#    Bef_ = Bef_ +lambdai*m
     for i, labmda in enumerate(lambdas):
         Bef_ = Bef_ + labmda*m**(i+1)
     return Bef_
@@ -55,14 +45,7 @@ def M(T, B):
         if abs(m_ - m) < tol:
             return m_
         m = m_
-        # print(Bef_)
-        # print(m)
-        # input()
 M_results=[]
-
-# Esse lambda nao parece estar certo
-# Bef quase não muda
-
 
 def TC(T, B):
     m = M(T, B)
@@ -104,26 +87,16 @@ def Del(T, B):
     den = 1 - ((((g*mb)**2)/(4*k*T)) * lambdas[0] * ((sech(arg))**2))
     return -(num/den)
 '''
-    
-# Fator de escala ##############################
-def escala(f): # Fator de escala. Caso a função não esteja no dicionário, retorna 1 (sem escala)
-      escalas = {
-        M: 1/mb,
-        qui: 1/mb,
-        S: R/k,
-        C: R/k,
-    }
-      return escalas.get(f, 1)
-
 
 # Loop principal
 for T in temperaturas:
     # Em cada temperatra da lista
 
-    M_results.append(float(M(T,B)))
-    S_results.append(float(S(T,B)))
-    C_results.append(float(C(T,B)))
-    qui_results.append(float(qui(T,B)))
+    M_results.append((1/mb) * float(M(T,B)))
+    S_results.append((R/k) * float(S(T,B)))
+    C_results.append((R/k) * float(C(T,B)))
+    qui_results.append((1/mb) * float(qui(T,B)))
+    # Escala inclusa
 
 
 # Salvar e plotar gráfico
