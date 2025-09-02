@@ -92,7 +92,7 @@ def Del(T, B):
 for T in temperaturas:
     # Em cada temperatra da lista
 
-    M_results.append((1/mb) * float(M(T,B)))
+    M_results.append(float(M(T,B)))
     S_results.append((R/k) * float(S(T,B)))
     C_results.append((R/k) * float(C(T,B)))
     qui_results.append((1/mb) * float(qui(T,B)))

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 diretorio = os.path.dirname(__file__)
 arquivos = [
-    "dados0.dat",
+    "dados.dat",
 #    "dados1.dat",
     "dados2.dat",
 #    "dados3.dat",
