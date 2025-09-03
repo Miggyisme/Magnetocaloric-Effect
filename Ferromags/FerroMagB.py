@@ -1,7 +1,6 @@
 import os
 from numpy import sinh, cosh, tanh, log, arange
 import matplotlib.pyplot as plt
-from scipy.optimize import fsolve
 def sech(x):
   return 1/cosh(x)
 
@@ -92,7 +91,7 @@ def Del(T, B):
 for T in temperaturas:
     # Em cada temperatra da lista
 
-    M_results.append(float(M(T,B)))
+    M_results.append((1/mb) * float(M(T,B)))
     S_results.append((R/k) * float(S(T,B)))
     C_results.append((R/k) * float(C(T,B)))
     qui_results.append((1/mb) * float(qui(T,B)))
@@ -100,16 +99,15 @@ for T in temperaturas:
 
 
 # Salvar e plotar gráfico
+def salvar(temperaturas, resultados):
+    with open("output.dat", "w") as f:
+        for T, res in zip(temperaturas, resultados):
+            f.write(f"{T:.6f}\t{res:.6e}\n")
+salvar(temperaturas, M_results)
+
 plt.scatter(temperaturas, M_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
 plt.show()
-
-def salvar(temperaturas, resultados):
-    with open("dados.dat", "w") as f:
-        for T, res in zip(temperaturas, resultados):
-            f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(temperaturas, M_results)
-
 
