@@ -9,6 +9,7 @@ g = 2             # Fator de landé
 k = 8.61e-5       # Constalte de Boltzmann (eV/K)
 mb = 5.78e-5      # mi bohr (eV/T)
 R = 8.31          # Constante universal dos gases
+e = 2.71828
 
 # Leitura dos dados: s, B, lista de lambdas
 data = os.path.join(os.path.dirname(__file__), "input.dat")
@@ -32,7 +33,25 @@ def Bef(m,B): # Função B efetivo
     Bef_ = B
     for i, labmda in enumerate(lambdas):
         Bef_ = Bef_ + labmda*m**(i+1)
+        z=input()
     return Bef_
+Bef_results=[]
+
+#def E1():
+#    return -(g*mb*Bef())/(2)
+#def E2():
+#    return (g*mb*Bef())/(2)
+
+# def Z(T): # Função partição
+#    return e**(-((1/k*T)*E1))+e**(-((1/k*T)*E2))
+#Z_results=[]
+
+#def F(T):
+#    return -k*T*log(Z)
+#F_results=[]
+
+
+
 
 def M(T, B):
     m = 1
@@ -96,6 +115,9 @@ for T in temperaturas:
     C_results.append((R/k) * float(C(T,B)))
     qui_results.append((1/mb) * float(qui(T,B)))
     # Escala inclusa
+#    F_results.append(float(Bef(M,B)))
+#    Z_results.append(float(F(T)))
+#    Bef_results.append(float(Bef(m,B)))
 
 
 # Salvar e plotar gráfico
@@ -103,9 +125,12 @@ def salvar(temperaturas, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(temperaturas, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(temperaturas, M_results)
+# salvar(temperaturas, M_results)
+# salvar(temperaturas, Bef_results)
 
+# plt.scatter(temperaturas, M_results)
 plt.scatter(temperaturas, M_results)
+# plt.scatter(temperaturas, Bef_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
