@@ -41,8 +41,11 @@ Bef_results = []
 
 def E1(Bef_):
     return -(g*mb*Bef_)/(2)
+E1_results = []
+
 def E2(Bef_):
     return (g*mb*Bef_)/(2)
+E2_Results = []
 
 
 def Z(T,Bef_): # Função partição
@@ -70,7 +73,7 @@ M_results=[]
 
 def TC(T,Bef_):
     arg = (g*mb*Bef_) / (2*k*T)
-    return ((g*mb)**2 / (4*k)) * lambdas[0] * (sech(arg)**2)
+    return ((g*mb)**2 / (4*k)) * (lambdas[0]+3*lambdas[2]*M(T,B)) * (sech(arg)**2)
 TC_results=[]
 
 def S(T,Bef_):
@@ -115,6 +118,8 @@ for T in temperaturas:
     F_results.append(F(T, Bef_))
     Z_results.append(Z(T, Bef_))
     Bef_results.append(Bef_)
+    E1_results.append(E1(Bef_))
+    E2_Results.append(E2(Bef_))
 
 
 # Salvar e plotar gráfico
@@ -122,9 +127,12 @@ def salvar(temperaturas, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(temperaturas, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(temperaturas, Bef_results)
+salvar(temperaturas, TC_results)
 
-plt.scatter(temperaturas, Bef_results)
+
+#plt.scatter(temperaturas, E2_Results)
+#plt.scatter(temperaturas, E1_Results)
+plt.scatter(temperaturas, TC_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
