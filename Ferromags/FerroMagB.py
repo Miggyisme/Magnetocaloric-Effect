@@ -45,7 +45,7 @@ E1_results = []
 
 def E2(Bef_):
     return (g*mb*Bef_)/(2)
-E2_Results = []
+E2_results = []
 
 
 def Z(T,Bef_): # Função partição
@@ -119,7 +119,7 @@ for T in temperaturas:
     Z_results.append(Z(T, Bef_))
     Bef_results.append(Bef_)
     E1_results.append(E1(Bef_))
-    E2_Results.append(E2(Bef_))
+    E2_results.append(E2(Bef_))
 
 
 # Salvar e plotar gráfico
@@ -127,12 +127,12 @@ def salvar(temperaturas, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(temperaturas, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(temperaturas, TC_results)
+salvar(temperaturas, E1_results)
 
 
-#plt.scatter(temperaturas, E2_Results)
-#plt.scatter(temperaturas, E1_Results)
-plt.scatter(temperaturas, TC_results)
+plt.scatter(temperaturas, E2_results)
+plt.scatter(temperaturas, E1_results)
+# plt.scatter(temperaturas, TC_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
