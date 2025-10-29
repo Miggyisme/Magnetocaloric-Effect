@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-nome_arquivo = "ferro_M_B15_L515439.0.dat"
+nome_arquivo = "30.dat"
 
 x = []
 y = []
@@ -18,6 +18,14 @@ y = np.array(y)
 
 # Derivada do numpy
 dy_dx = np.gradient(y, x)
+
+# salvar
+def salvar(campos, resultados):
+    with open("derivative.output.dat", "w") as f:
+        for T, res in zip(campos, resultados):
+            f.write(f"{T:.6f}\t{res:.6e}\n")
+salvar(x, dy_dx)
+
 
 # Plot
 plt.scatter(x, dy_dx, label='dy/dx')

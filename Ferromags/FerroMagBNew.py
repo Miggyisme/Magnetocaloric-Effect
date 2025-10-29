@@ -93,15 +93,12 @@ def qui(T,Bef_):
     return num / (T - TC(T, B))
 qui_results=[]
 
-
-
 def Del(T, Bef_):
     arg = (g*mb*Bef_)/(2*k*T)
     num = (((g*mb)**2)*Bef_)/(4*k*(T**2)) * ((sech(arg))**2)
     den = 1 - ((((g*mb)**2)/(4*k*T)) * lambdas[0] * ((sech(arg))**2))
     return -(num/den)
 Del_results=[]
-
 
 # ------ Loop principal ------
 for T in temperaturas:
