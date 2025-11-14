@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-nome_arquivo = "30.dat"
+nome_arquivo = "40.dat"
 
 x = []
 y = []
