@@ -24,7 +24,7 @@ for linha in linhas[3:]:
     lambdas.append(valor)
 
 # Lista de temperaturas
-start = 0.01
+start = 1
 end = 50
 step = 0.05
 temperaturas = list(map(float, arange(start, end + step, step)))
@@ -38,7 +38,7 @@ def Bef(m, B):
     return Bef_
 Bef_results = []
 
-
+# E1 E2
 def E1(Bef_):
     return -(g*mb*Bef_)/(2)
 E1_results = []
@@ -47,12 +47,12 @@ def E2(Bef_):
     return (g*mb*Bef_)/(2)
 E2_results = []
 
-
-def Z(T,Bef_): # Função partição
-    return e**(-((1/k*T)*E1(Bef_)))+e**(-((1/k*T)*E2(Bef_)))
+# Função partição e energia livre
+def Z(T,Bef_):
+    return e**(-((1/(k*T))*E1(Bef_)))+e**(-((1/(k*T))*E2(Bef_)))
 Z_results=[]
 
-def F(T,Bef_):
+def F(T,Bef_): 
     return -k*T*log(Z(T,Bef_))
 F_results=[]
 
@@ -106,17 +106,25 @@ for T in temperaturas:
     Bef_ = Bef(M_,B)
 
     # Em cada temperatra da lista
-    M_results.append((1/mb) * M_)
-    Del_results.append((1/mb) * Del(T,Bef_))
-    S_results.append((R/k) * S(T,Bef_))
-    C_results.append((R/k) * C(T,Bef_))
-    qui_results.append((1/mb) * qui(T,Bef_))
-    TC_results.append(TC(T,Bef_))
-    F_results.append(F(T, Bef_))
-    Z_results.append(Z(T, Bef_))
-    Bef_results.append(Bef_)
-    E1_results.append(E1(Bef_))
-    E2_results.append(E2(Bef_))
+    M_results.append(float((1/mb) * M_))
+    Del_results.append(float((1/mb) * Del(T,Bef_)))
+    S_results.append(float((R/k) * S(T,Bef_)))
+    C_results.append(float((R/k) * C(T,Bef_)))
+    qui_results.append(float((1/mb) * qui(T,Bef_)))
+    TC_results.append(float(TC(T,Bef_)))
+    F_results.append(float(F(T, Bef_)))
+    Z_results.append(float(Z(T, Bef_)))
+    Bef_results.append(float(Bef_))
+    E1_results.append(float(E1(Bef_)))
+    E2_results.append(float(E2(Bef_)))
+
+    # Testes
+    #print(Z_results)
+    #print(e**-(1/(k*1)*-5.78e-05)+e**-(1/(k*1)*5.78e-05))
+    # input()
+
+
+
 
 
 # Salvar e plotar gráfico
@@ -132,4 +140,3 @@ plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
 plt.show()
-

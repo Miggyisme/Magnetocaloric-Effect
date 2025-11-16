@@ -12,9 +12,9 @@ arquivos = [
 #   "20.dat","40.dat","50.dat","60.dat"
 #   "1.dat","5.dat","10.dat","15.dat",
 #   "0.dat","1.dat","3.dat","5.dat","7.dat",
-   "1.dat","2.dat","3.dat","4.dat",#"5.dat"
+#   "1.dat","2.dat","3.dat","4.dat",#"5.dat"
 #   "d0.dat","d1.dat","d3.dat","d5.dat","d7.dat",
-#   "output.dat",
+   "output.dat",
 #   "0a.dat","1a.dat","3a.dat","5a.dat","7a.dat",
 #    "E1.dat","E2.dat"
 
@@ -40,12 +40,12 @@ for arquivo in arquivos:
 
 
 # Definicao de limites do grafico
-largura_esquerda = 49
+largura_esquerda = -1
 largura_direita = 50
-#teto=600
-chao=-0
+teto=100
+chao=-1
 plt.xlim(largura_esquerda,largura_direita)
-#plt.ylim(chao,teto)
+plt.ylim(chao,teto)
 
 
 # Legendas e limites
