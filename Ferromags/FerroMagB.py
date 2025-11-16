@@ -24,7 +24,7 @@ for linha in linhas[3:]:
     lambdas.append(valor)
 
 # Lista de temperaturas
-start = 1
+start = 0.01
 end = 50
 step = 0.05
 temperaturas = list(map(float, arange(start, end + step, step)))
@@ -49,7 +49,7 @@ E2_results = []
 
 # Função partição e energia livre
 def Z(T,Bef_):
-    return e**(-((1/(k*T))*E1(Bef_)))+e**(-((1/(k*T))*E2(Bef_)))
+    return e**(-((1/k*T)*E1(Bef_)))+e**(-((1/k*T)*E2(Bef_)))
 Z_results=[]
 
 def F(T,Bef_): 
@@ -119,9 +119,11 @@ for T in temperaturas:
     E2_results.append(float(E2(Bef_)))
 
     # Testes
-    #print(Z_results)
-    #print(e**-(1/(k*1)*-5.78e-05)+e**-(1/(k*1)*5.78e-05))
+    # print("Z=",Z_results)
+    # print("Bef",Bef_results)
+    # print(e**-(1/(k*1)*-5.78e-05*1)+e**-(1/(k*1)*5.78e-05*1))
     # input()
+
 
 
 

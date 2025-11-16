@@ -22,12 +22,13 @@ def E2(Bef_):
 
 # print("E1=",E1(1),"\nE2=",E2(1))
 
-print(e**((1/(k*T))*E2(1))+e**((1/(k*T))*E1(1)))
+# print(e**((1/(k*T))*E2(1))+e**((1/(k*T))*E1(1)))
 
 
 def Z(T,Bef_):
     return e**(-((1/k*T)*E1(Bef_)))+e**(-((1/k*T)*E2(Bef_)))
 
+print(Z(1,0))
 
 def F(T,Bef_): 
     return -k*T*log(Z(T,Bef_))
