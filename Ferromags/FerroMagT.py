@@ -24,7 +24,7 @@ for linha in linhas[3:]:
     lambdas.append(valor)
 
 # Lista de campos
-start = 0
+start = -50
 end = 50
 step = 0.05
 campos = list(map(float, arange(start, end + step, step)))
@@ -60,7 +60,7 @@ F_results=[]
 
 
 def M(T,B):
-    m = 1
+    m = -0.5
     tol=1e-8
     while True:
         Bef_ = Bef(m,B)
@@ -124,10 +124,10 @@ def salvar(campos, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(campos, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(campos, Z_results)
+salvar(campos, M_results)
 
 
-plt.scatter(campos, Z_results)
+plt.scatter(campos, M_results)
 plt.xlabel("Campos (T)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)

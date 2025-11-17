@@ -15,8 +15,8 @@ arquivos = [
 #   "0.dat","1.dat","3.dat","5.dat","7.dat",
 #   "1.dat","2.dat","3.dat","4.dat",#"5.dat"
 #   "d0.dat","d1.dat","d3.dat","d5.dat","d7.dat",
-#   "output.dat",
-   "0.dat","0.1.dat","0.2.dat"
+   "5.dat","20.dat","15.dat"
+#   "0.dat","0.1.dat","0.2.dat"
 #   "0a.dat","1a.dat","3a.dat","5a.dat","7a.dat",
 #   "E1.dat","E2.dat"
 
@@ -40,15 +40,15 @@ for arquivo in arquivos:
     plt.scatter(x,y, label=legenda) 
 
 
-
+'''
 # Definicao de limites do grafico
 largura_esquerda = 0
 largura_direita = 50
-teto=200
-chao=-0
+teto=0
+chao=-0.5
 plt.xlim(largura_esquerda,largura_direita)
 plt.ylim(chao,teto)
-
+'''
 
 # Legendas e limites
 plt.xlabel("Campos (T)")

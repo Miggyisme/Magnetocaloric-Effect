@@ -134,10 +134,10 @@ def salvar(temperaturas, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(temperaturas, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(temperaturas, Z_results)
+salvar(temperaturas, F_results)
 
 
-plt.scatter(temperaturas, Z_results)
+plt.scatter(temperaturas, F_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
