@@ -63,11 +63,6 @@ def M(T,B):
     # Adição
     m = 1
     tol=1e-8
-    if B>0:
-        m=1
-    elif B<0:
-        m=-1
-    # Adição
     while True:
         Bef_ = Bef(m,B)
         arg = (g*mb*Bef_) / (2*k*T)
