@@ -49,7 +49,8 @@ E2_results = []
 
 # Função partição e energia livre
 def Z(T,Bef_):
-    return e**(-((1/k*T)*E1(Bef_)))+e**(-((1/k*T)*E2(Bef_)))
+    #return e**(-((1/(k*T))*E1(Bef_)))+e**(-((1/(k*T))*E2(Bef_)))
+    return (-((1/(k*T))*E1(Bef_)))+e**(-((1/(k*T))*E2(Bef_)))
 Z_results=[]
 
 def F(T,Bef_): 
@@ -118,12 +119,6 @@ for T in temperaturas:
     E1_results.append(float(E1(Bef_)))
     E2_results.append(float(E2(Bef_)))
 
-    # Testes
-    # print("Z=",Z_results)
-    # print("Bef",Bef_results)
-    # print(e**-(1/(k*1)*-5.78e-05*1)+e**-(1/(k*1)*5.78e-05*1))
-    # input()
-
 
 
 
@@ -134,10 +129,10 @@ def salvar(temperaturas, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(temperaturas, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(temperaturas, F_results)
+salvar(temperaturas, Z_results)
 
 
-plt.scatter(temperaturas, F_results)
+plt.scatter(temperaturas, Z_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
