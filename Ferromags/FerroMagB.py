@@ -26,7 +26,8 @@ for linha in linhas[3:]:
 # Lista de temperaturas
 start = 0.01
 end = 50
-step = 0.05
+# step = 0.05
+step = 0.1
 temperaturas = list(map(float, arange(start, end + step, step)))
 
 

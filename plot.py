@@ -13,7 +13,7 @@ arquivos = [
 #   "20.dat","40.dat","50.dat","60.dat"
 #   "1.dat","5.dat","10.dat","15.dat",
 #   "0.dat","1.dat","3.dat","5.dat","7.dat",
-    "l2m1.dat","l2m-1.dat"
+    "l2m1.dat","0.1.dat"
 #   "1.dat","2.dat","3.dat","4.dat",#"5.dat"
 #   "d0.dat","d1.dat","d3.dat","d5.dat","d7.dat",
 #   "5.dat","20.dat","15.dat"
