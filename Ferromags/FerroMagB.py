@@ -27,7 +27,7 @@ for linha in linhas[3:]:
 start = 0.01
 end = 50
 # step = 0.05
-step = 0.1
+step = 0.01
 temperaturas = list(map(float, arange(start, end + step, step)))
 
 
@@ -130,10 +130,10 @@ def salvar(temperaturas, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(temperaturas, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(temperaturas,M_results) 
+salvar(temperaturas,E1_results) 
 
 
-plt.scatter(temperaturas,M_results)
+plt.scatter(temperaturas,E1_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)

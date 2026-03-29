@@ -125,10 +125,10 @@ def salvar(campos, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(campos, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(campos, M_results)
+salvar(campos, E2_results)
 
 
-plt.scatter(campos, M_results)
+plt.scatter(campos, E2_results)
 plt.xlabel("Campos (T)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
