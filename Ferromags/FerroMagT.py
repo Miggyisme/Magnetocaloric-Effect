@@ -24,9 +24,9 @@ for linha in linhas[3:]:
     lambdas.append(valor)
 
 # Lista de campos
-start = -50
+start = 0
 end = 50
-step = 0.05
+step = 0.01
 campos = list(map(float, arange(start, end + step, step)))
 
 
@@ -125,10 +125,10 @@ def salvar(campos, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(campos, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(campos, E2_results)
+salvar(campos,qui_results) 
 
 
-plt.scatter(campos, E2_results)
+plt.scatter(campos, qui_results)
 plt.xlabel("Campos (T)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
