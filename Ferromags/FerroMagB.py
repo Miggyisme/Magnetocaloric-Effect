@@ -95,12 +95,16 @@ def qui(T,Bef_):
     return num / (T - TC(T, B))
 qui_results=[]
 
-def Del(T, Bef_):
+def DelM(T, Bef_):
     arg = (g*mb*Bef_)/(2*k*T)
     num = (((g*mb)**2)*Bef_)/(4*k*(T**2)) * ((sech(arg))**2)
     den = 1 - ((((g*mb)**2)/(4*k*T)) * lambdas[0] * ((sech(arg))**2))
     return -(num/den)
-Del_results=[]
+DelM_results=[]
+
+def DelB(T, Bef_):
+    return -(T/Bef_)*DelM(T, Bef_)
+DelB_results=[]
 
 # ------ Loop principal ------
 for T in temperaturas:
@@ -109,7 +113,8 @@ for T in temperaturas:
 
     # Em cada temperatra da lista
     M_results.append(float((1/mb) * M_))
-    Del_results.append(float((1/mb) * Del(T,Bef_)))
+    DelM_results.append(float((1/mb) * DelM(T,Bef_)))
+    DelB_results.append(float((1/mb) * DelB(T,Bef_)))
     S_results.append(float((R/k) * S(T,Bef_)))
     C_results.append(float((R/k) * C(T,Bef_)))
     qui_results.append(float((1/mb) * qui(T,Bef_)))
@@ -130,10 +135,10 @@ def salvar(temperaturas, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(temperaturas, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(temperaturas,Z_results) 
+salvar(temperaturas,DelB_results) 
 
 
-plt.scatter(temperaturas,Z_results)
+plt.scatter(temperaturas,DelB_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
