@@ -18,8 +18,8 @@ arquivos = [
 #   "5.dat","20.dat","15.dat"
 #   "0.dat","0.1.dat","0.2.dat"
 #   "0a.dat","1a.dat","3a.dat","5a.dat","7a.dat",
-#   "0.dat","1.dat","3.dat","5.dat","7.dat",
-    "257719.dat","386579.dat","515439.dat","644299.dat","773158.dat",
+   "0.dat","1.dat","3.dat","5.dat","7.dat",
+#    "257719.dat","386579.dat","515439.dat","644299.dat","773158.dat",
 #   "E1.dat","E2.dat"
 #    "output.dat"
 
@@ -47,8 +47,8 @@ for arquivo in arquivos:
 
 # Definicao de limites do grafico
 largura_esquerda = 0
-largura_direita = 0.2
-teto=1000
+largura_direita = 50
+teto=0.22
 chao=0
 plt.xlim(largura_esquerda,largura_direita)
 plt.ylim(chao,teto)
