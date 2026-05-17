@@ -48,14 +48,14 @@ for arquivo in arquivos:
 # Definicao de limites do grafico
 largura_esquerda = 0
 largura_direita = 50
-teto=0.22
-chao=0
+teto=0
+chao=-1
 plt.xlim(largura_esquerda,largura_direita)
 plt.ylim(chao,teto)
 
 
 # Legendas e limites
-plt.xlabel("Campos (T)")
+plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização")
 # Exibir o gráfico
 plt.title("Magnetização")

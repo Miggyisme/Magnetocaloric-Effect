@@ -1,5 +1,5 @@
 import os
-from numpy import sinh, cosh, tanh, log, arange
+from numpy import cosh, tanh, log, arange
 import matplotlib.pyplot as plt
 def sech(x):
   return 1/cosh(x)
@@ -62,7 +62,7 @@ F_results=[]
 
 
 def M(T,B):
-    m = 1
+    m = -1
     tol=1e-8
     while True:
         Bef_ = Bef(m,B)
@@ -135,10 +135,10 @@ def salvar(temperaturas, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(temperaturas, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(temperaturas,DelB_results) 
+salvar(temperaturas,M_results) 
 
 
-plt.scatter(temperaturas,DelB_results)
+plt.scatter(temperaturas,M_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
