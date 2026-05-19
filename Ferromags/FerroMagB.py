@@ -24,10 +24,12 @@ for linha in linhas[3:]:
     lambdas.append(valor)
 
 # Lista de temperaturas
-start = 0.01
-end = 50
-# step = 0.05
-step = 0.01
+# start = 0.01
+# end = 50
+# step = 0.01
+start = 50
+end = 0.01
+step = -0.01
 temperaturas = list(map(float, arange(start, end + step, step)))
 
 
@@ -62,7 +64,7 @@ F_results=[]
 
 
 def M(T,B):
-    m = -1
+    m = 1
     tol=1e-8
     while True:
         Bef_ = Bef(m,B)
