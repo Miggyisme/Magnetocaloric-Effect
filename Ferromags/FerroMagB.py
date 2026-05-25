@@ -30,7 +30,9 @@ for linha in linhas[3:]:
 start = 50
 end = 0.01
 step = -0.01
+
 temperaturas = list(map(float, arange(start, end + step, step)))
+m_atual = 0.0
 
 
 # ----- Funções físicas -----
@@ -52,8 +54,7 @@ E2_results = []
 
 # Função partição e energia livre
 def Z(T,Bef_):
-    #return e**(-((1/(k*T))*E1(Bef_)))+e**(-((1/(k*T))*E2(Bef_)))
-    return (-((1/(k*T))*E1(Bef_)))+e**(-((1/(k*T))*E2(Bef_)))
+    return e**(-((1/(k*T))*E1(Bef_)))+e**(-((1/(k*T))*E2(Bef_)))
 Z_results=[]
 
 def F(T,Bef_): 
@@ -64,20 +65,28 @@ F_results=[]
 
 
 def M(T,B):
-    m = 1
+    global m_atual
+    m = m_atual
+    if abs(m) < 1e-10 and B == 0:
+        m = 1e-7
     tol=1e-8
     while True:
         Bef_ = Bef(m,B)
         arg = (g*mb*Bef_) / (2*k*T)
         m_ = (g*mb/2) * tanh(arg)
         if abs(m_ - m) < tol:
+            m_atual = m_
             return m_
         m = m_
 M_results=[]
 
+def tanh_func(T):
+    return tanh(T)
+tanh_results=[]
+
 def TC(T,Bef_):
     arg = (g*mb*Bef_) / (2*k*T)
-    return ((g*mb)**2 / (4*k)) * (lambdas[0]+3*lambdas[2]*M(T,B)) * (sech(arg)**2)
+    return ((g*mb)**2 / (4*k)) * (sech(arg)**2)
 TC_results=[]
 
 def S(T,Bef_):
@@ -114,6 +123,7 @@ for T in temperaturas:
     Bef_ = Bef(M_,B)
 
     # Em cada temperatra da lista
+    tanh_results.append(float(tanh_func(T)))
     M_results.append(float((1/mb) * M_))
     DelM_results.append(float((1/mb) * DelM(T,Bef_)))
     DelB_results.append(float((1/mb) * DelB(T,Bef_)))
