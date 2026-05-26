@@ -20,10 +20,11 @@ arquivos = [
 #   "0a.dat","1a.dat","3a.dat","5a.dat","7a.dat",
 #   "0.dat","1.dat","3.dat","5.dat","7.dat",
 #   "normal_tc10_l1.dat","normal_tc30_l1l2.dat","inverted_tc10_l1.dat","inverted_tc30_l1l2.dat",
-   "normal_tc10_l1.dat","normal_tc30_l1l3.dat","inverted_tc10_l1.dat","inverted_tc30_l1l3.dat",
+#   "normal_tc10_l1.dat","normal_tc30_l1l3.dat","inverted_tc10_l1.dat","inverted_tc30_l1l3.dat",
 #    "257719.dat","386579.dat","515439.dat","644299.dat","773158.dat",
 #   "E1.dat","E2.dat"
 #    "output.dat"
+"10.dat","30.dat"
 
 
 
