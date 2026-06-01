@@ -26,13 +26,13 @@ for linha in linhas[3:]:
 # Lista de temperaturas
 # start = 0.01
 # end = 50
-# step = 0.5
+# step = 0.01
 start = 50
 end = 0.01
-step = -0.05
+step = -0.01
 
 temperaturas = list(map(float, arange(start, end + step, step)))
-m_atual = 0
+m_atual = 1
 
 
 # ----- Funções físicas -----
@@ -106,12 +106,6 @@ def qui(T,Bef_):
     return num / (T - TC(T, B))
 qui_results=[]
 
-def invqui(T,Bef_):
-    return (qui(T,Bef_))**(-1)
-invqui_results=[]
-
-
-
 def DelM(T, Bef_):
     arg = (g*mb*Bef_)/(2*k*T)
     num = (((g*mb)**2)*Bef_)/(4*k*(T**2)) * ((sech(arg))**2)
@@ -131,12 +125,13 @@ for T in temperaturas:
     # Em cada temperatra da lista
     tanh_results.append(float(tanh_func(T)))
     M_results.append(float((1/mb) * M_))
+
+    '''
     DelM_results.append(float((1/mb) * DelM(T,Bef_)))
     DelB_results.append(float((1/mb) * DelB(T,Bef_)))
     S_results.append(float((R/k) * S(T,Bef_)))
     C_results.append(float((R/k) * C(T,Bef_)))
     qui_results.append(float((1/mb) * qui(T,Bef_)))
-    invqui_results.append(float((1/mb) * invqui(T,Bef_)))
     TC_results.append(float(TC(T,Bef_)))
     F_results.append(float(F(T, Bef_)))
     Z_results.append(float(Z(T, Bef_)))
@@ -144,8 +139,14 @@ for T in temperaturas:
     E1_results.append(float(E1(Bef_)))
     E2_results.append(float(E2(Bef_)))
 
+    '''
 
 
+
+# Filter setting
+passo_grafico = 150
+temperaturas_filter = temperaturas[::passo_grafico]
+M_results_filer = M_results[::passo_grafico]
 
 
 
@@ -154,10 +155,10 @@ def salvar(temperaturas, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(temperaturas, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(temperaturas,M_results) 
+salvar(temperaturas_filter,M_results_filer) 
 
 
-plt.scatter(temperaturas,M_results)
+plt.scatter(temperaturas_filter,M_results_filer)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
