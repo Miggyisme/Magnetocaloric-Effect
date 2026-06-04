@@ -24,12 +24,12 @@ for linha in linhas[3:]:
     lambdas.append(valor)
 
 # Lista de temperaturas
-# start = 0.01
-# end = 50
-# step = 0.01
-start = 50
-end = 0.01
-step = -0.01
+start = 0.01
+end = 50
+step = 0.01
+# start = 50
+# end = 0.01
+# step = -0.01
 
 temperaturas = list(map(float, arange(start, end + step, step)))
 m_atual = 1
@@ -144,7 +144,7 @@ for T in temperaturas:
 
 
 # Filter setting
-passo_grafico = 150
+passo_grafico = 1
 temperaturas_filter = temperaturas[::passo_grafico]
 M_results_filer = M_results[::passo_grafico]
 
@@ -155,10 +155,10 @@ def salvar(temperaturas, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(temperaturas, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(temperaturas_filter,M_results_filer) 
+salvar(temperaturas,M_results) 
 
 
-plt.scatter(temperaturas_filter,M_results_filer)
+plt.scatter(temperaturas,M_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)
