@@ -126,10 +126,10 @@ for T in temperaturas:
     tanh_results.append(float(tanh_func(T)))
     M_results.append(float((1/mb) * M_))
     DelM_results.append(float((1/mb) * DelM(T,Bef_)))
-    DelB_results.append(float((1/mb) * DelB(T,Bef_))) # Susceptibilidade teoricamente correta.
+    DelB_results.append(float((1/mb) * DelB(T,Bef_)))
     S_results.append(float((R/k) * S(T,Bef_)))
     C_results.append(float((R/k) * C(T,Bef_)))
-    qui_results.append(float((1/mb) * qui(T,Bef_))) # Susceptibilidade teoricamente nao precisa.
+    qui_results.append(float((1/mb) * qui(T,Bef_)))
     TC_results.append(float(TC(T,Bef_)))
     F_results.append(float(F(T, Bef_)))
     Z_results.append(float(Z(T, Bef_)))
@@ -151,10 +151,10 @@ def salvar(temperaturas, resultados):
     with open("output.dat", "w") as f:
         for T, res in zip(temperaturas, resultados):
             f.write(f"{T:.6f}\t{res:.6e}\n")
-salvar(temperaturas,M_results) 
+salvar(temperaturas,DelB_results) 
 
 
-plt.scatter(temperaturas,M_results)
+plt.scatter(temperaturas,DelB_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")
 plt.grid(True)

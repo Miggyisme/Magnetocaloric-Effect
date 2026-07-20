@@ -1,6 +1,6 @@
 s=0.5
 B=0
-T=0.0001
-lambda=257719.610  
-lambda2=800000000
+T=0.01
+lambda=257719.610 
+lambda=0 
 lambda3=0
