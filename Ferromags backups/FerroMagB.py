@@ -130,8 +130,6 @@ def salvar(temperaturas, resultados):
 salvar(temperaturas, E1_results)
 
 
-plt.scatter(temperaturas, E2_results)
-plt.scatter(temperaturas, E1_results)
 # plt.scatter(temperaturas, TC_results)
 plt.xlabel("Temperatura (K)")
 plt.ylabel("Magnetização M(T)")

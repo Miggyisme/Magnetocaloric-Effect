@@ -100,6 +100,14 @@ def M_autoconsistente(T, B, chute_adim):
     return m_adim
 M_results = []
 
+def tanh_func(x):
+    return tanh(x)
+tanh_results = []
+
+def sech2_func(x):
+    return sech(x) ** 2
+sech2_results = []
+
 def dBef_dm(m_adim):
     derivada = 0.0
     for i, lambda_ in enumerate(lambdas):
@@ -142,6 +150,19 @@ for T in temperaturas:
     TC_results.append(TC(T, B, m_atual))
     chute = m_atual  # Efeito memória
 
+
+# Funcoes matematicas
+x_inicial_tanh = -3
+x_final_tanh = 3
+N_tanh = 1000
+x_tanh = [x_inicial_tanh + i * (x_final_tanh - x_inicial_tanh) / N_tanh for i in range(N_tanh + 1)]
+tanh_results = [tanh_func(x) for x in x_tanh]
+sech2_results = [sech2_func(x) for x in x_tanh]
+
+
+
+
+
 # Salvar e plotar gráfico
 def salvar(nome_arquivo, temperaturas, resultados):
     with open(nome_arquivo, "w") as f:
@@ -150,7 +171,7 @@ def salvar(nome_arquivo, temperaturas, resultados):
 salvar(nome_saida, temperaturas, M_results)
 
 plt.scatter(temperaturas, M_results)
-plt.xlabel("Temperatura (K)")
-plt.ylabel("Magnetização")
+plt.xlabel("x")
+plt.ylabel("tanh(x)")
 plt.grid(True)
 plt.show()

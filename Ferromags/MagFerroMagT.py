@@ -89,6 +89,14 @@ def M_autoconsistente(T, B, chute_adim):
     return m_adim
 M_results = []
 
+def tanh_func(x):
+    return tanh(x)
+tanh_results = []
+
+def sech2_func(x):
+    return sech(x) ** 2
+sech2_results = []
+
 def dBef_dm(m_adim):
     derivada = 0.0
     for i, lambda_ in enumerate(lambdas):
@@ -129,6 +137,8 @@ for B in campos:
     E2_results.append(E2(Bef_))
     F_results.append(F(T, Bef_))
     TC_results.append(TC(T, B, m_atual))
+    tanh_results.append(tanh_func(B))
+    sech2_results.append(sech2_func(B))
     chute = m_atual  # Efeito memória
 
 # Salvar e plotar gráfico
